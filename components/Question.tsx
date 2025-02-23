@@ -1,32 +1,36 @@
-"use client"
+"use client";
 
-import { useState } from "react"
+import { useState } from "react";
 
 interface QuestionProps {
   questionData: {
-    question: string
-    options: string[]
-    correctAnswer: number
-    explanation: string
-  }
-  onAnswer: (selectedAnswer: number) => void
-  questionNumber: number
+    question: string;
+    options: string[];
+    correctAnswer: number;
+    explanation: string;
+  };
+  onAnswer: (selectedAnswer: number) => void;
+  questionNumber: number;
 }
 
-export default function Question({ questionData, onAnswer, questionNumber }: QuestionProps) {
-  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null)
-  const [showExplanation, setShowExplanation] = useState(false)
+export default function Question({
+  questionData,
+  onAnswer,
+  questionNumber,
+}: QuestionProps) {
+  const [selectedAnswer, setSelectedAnswer] = useState<number | null>(null);
+  const [showExplanation, setShowExplanation] = useState(false);
 
   const handleSelectAnswer = (index: number) => {
-    setSelectedAnswer(index)
-    setShowExplanation(true)
-  }
+    setSelectedAnswer(index);
+    setShowExplanation(true);
+  };
 
   const handleNextQuestion = () => {
-    onAnswer(selectedAnswer!)
-    setSelectedAnswer(null)
-    setShowExplanation(false)
-  }
+    onAnswer(selectedAnswer!);
+    setSelectedAnswer(null);
+    setShowExplanation(false);
+  };
 
   return (
     <div className="space-y-4">
@@ -54,12 +58,14 @@ export default function Question({ questionData, onAnswer, questionNumber }: Que
         <div className="mt-4">
           <p className="font-bold">Explanation:</p>
           <p>{questionData.explanation}</p>
-          <button onClick={handleNextQuestion} className="mt-4 bg-blue-500 text-white p-2 rounded hover:bg-blue-600">
+          <button
+            onClick={handleNextQuestion}
+            className="mt-4 bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+          >
             Next Question
           </button>
         </div>
       )}
     </div>
-  )
+  );
 }
-
