@@ -1,54 +1,71 @@
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
-import { createClient } from "@supabase/supabase-js";
-import { streamText } from "ai";
-import { openai } from "@ai-sdk/openai";
+import { z } from "zod";
+import { zodResponseFormat } from "openai/helpers/zod";
 
 const openaiClient = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
+const TriviaQuestion = z.object({
+  question: z.string(),
+  options: z.array(z.string()),
+  correctAnswer: z.number(),
+  explanation: z.string(),
+  hint: z.string(),
+});
+
+const MAX_RETRIES = 3;
+const RETRY_DELAY = 1000;
+
+async function retryOperation<T>(
+  operation: () => Promise<T>,
+  retries: number = MAX_RETRIES
+): Promise<T> {
+  for (let i = 0; i < retries; i++) {
+    try {
+      return await operation();
+    } catch (error) {
+      if (i === retries - 1) throw error;
+      await new Promise((resolve) => setTimeout(resolve, RETRY_DELAY));
+    }
+  }
+  throw new Error("Maximum retries reached");
+}
 
 export async function POST(req: Request) {
-  const { topic, previousQuestions } = await req.json();
-
-  const prompt = `Generate a multiple-choice trivia question about ${topic} with 4 options. 
-  Provide the correct answer and a brief explanation. 
-  Format the response as a JSON object with the following structure:
-  {
-    "question": "The question text",
-    "options": ["Option A", "Option B", "Option C", "Option D"],
-    "correctAnswer": 0,
-    "explanation": "Brief explanation of the correct answer"
-  }
-  Ensure the question is not too similar to any of these previous questions: ${previousQuestions.join(
-    ", "
-  )}`;
+  const { topic, previousQuestions, language } = await req.json();
 
   try {
-    const result = await streamText({
-      model: openai("gpt-4o"),
-      prompt: prompt,
-    });
+    const completion = await retryOperation(() =>
+      openaiClient.beta.chat.completions.parse({
+        model: "gpt-4o-mini",
+        messages: [
+          {
+            role: "system",
+            content: `You are a trivia question generator. Create engaging and accurate multiple-choice questions with helpful hints that don't directly give away the answer. Generate the content in ${
+              language === "es" ? "Spanish" : "English"
+            }.`,
+          },
+          {
+            role: "user",
+            content: `Generate a multiple-choice trivia question about ${topic} with a subtle hint that helps think about the answer without giving it away directly. 
+              Ensure it's not similar to these previous questions: ${previousQuestions.join(
+                ", "
+              )}`,
+          },
+        ],
+        response_format: zodResponseFormat(TriviaQuestion, "trivia_question"),
+      })
+    );
 
-    const questionData = JSON.parse(result.text);
-
-    // Generate embedding for the new question
-    const embeddingResponse = await openaiClient.embeddings.create({
-      model: "text-embedding-ada-002",
-      input: questionData.question,
-    });
-    const embedding = embeddingResponse.data[0].embedding;
-
-    // Store the embedding in Supabase
-    await supabase.from("question_embeddings").insert({
-      question: questionData.question,
-      embedding: embedding,
-    });
+    const questionData = completion.choices[0]?.message.parsed;
+    if (!questionData) {
+      return NextResponse.json(
+        { error: "Failed to generate question data" },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json(questionData);
   } catch (error) {
