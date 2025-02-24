@@ -5,7 +5,11 @@ import { motion } from "framer-motion";
 import TriviaSession from "../components/TriviaSession";
 import { useLanguage } from "../contexts/LanguageContext";
 import StoryPopup from "../components/StoryPopup";
-import { TOTAL_QUESTIONS, REQUIRED_SCORE } from "../constants/game";
+import {
+  TOTAL_QUESTIONS,
+  REQUIRED_SCORE,
+  DEFAULT_HINTS,
+} from "../constants/game";
 
 const translations = {
   en: {
@@ -38,7 +42,7 @@ export default function Home() {
   const [sessionStarted, setSessionStarted] = useState(false);
   const { language, setLanguage } = useLanguage();
   const [showStory, setShowStory] = useState(false);
-  const [hints, setHints] = useState(3);
+  const [hints, setHints] = useState(DEFAULT_HINTS);
   const t = translations[language];
 
   useEffect(() => {
