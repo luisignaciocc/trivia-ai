@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { LanguageProvider } from "../contexts/LanguageContext";
 import { Analytics } from "@vercel/analytics/react";
@@ -9,11 +9,11 @@ export const metadata: Metadata = {
   description: `Face the Oracle of Ignorance in an epic battle of knowledge. Answer ${TOTAL_QUESTIONS} questions correctly to claim the Flame of Knowledge and save humanity from eternal ignorance.`,
   keywords:
     "trivia game, knowledge quiz, educational game, AI trivia, oracle challenge",
-  authors: [{ name: "Your Name" }],
+  authors: [{ name: "Luis Ignacio Cabezas" }],
   openGraph: {
     title: "Trivia Wars: The Oracle's Challenge",
     description: "Face the Oracle of Ignorance in an epic battle of knowledge",
-    url: "https://your-domain.com",
+    url: "https://trivia.luisignacio.cc/",
     siteName: "Trivia Wars",
     locale: "en_US",
     type: "website",
@@ -22,10 +22,14 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Trivia Wars: The Oracle's Challenge",
     description: "Face the Oracle of Ignorance in an epic battle of knowledge",
-    creator: "@yourusername",
+    creator: "@luisignaciocc",
   },
-  viewport: "width=device-width, initial-scale=1",
+};
+
+export const viewport: Viewport = {
   themeColor: "#1e1b4b",
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
