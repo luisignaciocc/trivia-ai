@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { LanguageProvider } from "../contexts/LanguageContext";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "Trivia Wars: The Oracle's Challenge",
@@ -36,6 +37,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <LanguageProvider>{children}</LanguageProvider>
+        <Analytics />
       </body>
     </html>
   );
