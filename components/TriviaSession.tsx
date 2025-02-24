@@ -227,37 +227,39 @@ export default function TriviaSession({
         animate={{ opacity: 1, scale: 1 }}
         className="min-h-full flex items-center justify-center p-4"
       >
-        <div className="max-w-md w-full bg-gray-900/60 backdrop-blur-md rounded-xl shadow-lg p-8 border border-yellow-400/20">
-          <h2 className="text-3xl font-bold text-center mb-6 text-yellow-200">
+        <div className="max-w-md w-full bg-gray-900/90 backdrop-blur-md rounded-xl shadow-lg p-8 border border-yellow-400/20">
+          <h2 className="text-3xl font-bold text-center mb-6 bg-gradient-to-r from-yellow-400 to-yellow-200 bg-clip-text text-transparent">
             {t.completed}
           </h2>
           <div className="text-center space-y-4">
-            <div className="text-6xl font-bold mb-4">
+            <div className="text-6xl font-bold mb-4 text-yellow-400">
               {score}/{TOTAL_QUESTIONS}
             </div>
-            <div className="h-4 bg-gray-200 rounded-full">
+            <div className="h-2 bg-purple-900/50 rounded-full overflow-hidden">
               <div
-                className="h-full bg-blue-600 rounded-full transition-all duration-500"
+                className="h-full bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full transition-all duration-300 shadow-[0_0_10px_rgba(250,204,21,0.3)]"
                 style={{ width: `${(score / TOTAL_QUESTIONS) * 100}%` }}
               ></div>
             </div>
-            {score >= REQUIRED_SCORE ? ( // Usar puntuación calculada
+            {score >= REQUIRED_SCORE ? (
               <motion.p
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                className="text-green-500 font-bold text-xl"
+                className="text-green-400 font-bold text-xl"
               >
                 {t.congratulations}
               </motion.p>
             ) : (
-              <p className="text-gray-600 text-xl">{t.keepTrying}</p>
+              <p className="text-yellow-200 text-xl">{t.keepTrying}</p>
             )}
-            <button
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               onClick={() => window.location.reload()}
-              className="mt-6 w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              className="mt-6 w-full py-3 bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 rounded-lg font-medium shadow-lg hover:shadow-yellow-400/20 transition-all duration-200"
             >
               {t.playAgain}
-            </button>
+            </motion.button>
           </div>
         </div>
       </motion.div>
