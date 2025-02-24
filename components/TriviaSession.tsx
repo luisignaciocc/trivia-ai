@@ -184,12 +184,14 @@ export default function TriviaSession({
 
   if (isLoading) {
     return (
-      <div className="min-h-full py-10 flex items-center justify-center bg-gray-900/60 backdrop-blur-md">
-        <div className="text-center max-w-md mx-4">
-          <div className="w-16 h-16 border-4 border-yellow-400 border-t-transparent rounded-full animate-spin mx-auto mb-6"></div>
-          <span className="inline-block px-6 py-3 bg-gray-800/80 text-yellow-200 rounded-xl text-lg font-medium backdrop-blur-sm">
-            {loadingMessage}
-          </span>
+      <div className="min-h-full py-4 sm:py-8 backdrop-blur-md">
+        <div className="max-w-2xl mx-auto p-3 sm:p-4 md:p-6 bg-gray-900/60 backdrop-blur-md rounded-xl border border-yellow-400/20">
+          <div className="text-center">
+            <div className="w-16 h-16 border-4 border-yellow-400 border-t-transparent rounded-full animate-spin mx-auto mb-6"></div>
+            <span className="inline-block px-6 py-3 text-yellow-200 rounded-xl text-lg font-medium backdrop-blur-sm">
+              {loadingMessage}
+            </span>
+          </div>
         </div>
       </div>
     );
