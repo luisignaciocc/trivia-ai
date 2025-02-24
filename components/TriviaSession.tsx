@@ -182,7 +182,7 @@ export default function TriviaSession({
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-900/60 backdrop-blur-md">
+      <div className="min-h-full py-10 flex items-center justify-center bg-gray-900/60 backdrop-blur-md">
         <div className="text-center max-w-md mx-4">
           <div className="w-16 h-16 border-4 border-yellow-400 border-t-transparent rounded-full animate-spin mx-auto mb-6"></div>
           <span className="inline-block px-6 py-3 bg-gray-800/80 text-yellow-200 rounded-xl text-lg font-medium backdrop-blur-sm">
@@ -198,7 +198,7 @@ export default function TriviaSession({
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="min-h-screen flex items-center justify-center bg-gray-900/60 backdrop-blur-md p-4"
+        className="min-h-full flex items-center justify-center bg-gray-900/60 backdrop-blur-md p-4"
       >
         <div className="max-w-md w-full bg-gray-800/80 backdrop-blur-md rounded-xl shadow-lg p-8 border border-yellow-400/20 text-center">
           <h2 className="text-3xl font-bold mb-4 text-yellow-400">
@@ -223,7 +223,7 @@ export default function TriviaSession({
       <motion.div
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
-        className="min-h-screen flex items-center justify-center p-4"
+        className="min-h-full flex items-center justify-center p-4"
       >
         <div className="max-w-md w-full bg-gray-900/60 backdrop-blur-md rounded-xl shadow-lg p-8 border border-yellow-400/20">
           <h2 className="text-3xl font-bold text-center mb-6 text-yellow-200">
@@ -261,7 +261,7 @@ export default function TriviaSession({
   }
 
   return (
-    <div className="min-h-screen py-2 sm:py-8 backdrop-blur-md">
+    <div className="min-h-full py-4 sm:py-8 backdrop-blur-md">
       <div className="max-w-4xl mx-auto px-3 sm:px-4">
         <div className="flex justify-between items-center mb-4">
           <button
