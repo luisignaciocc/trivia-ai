@@ -261,8 +261,8 @@ export default function TriviaSession({
   }
 
   return (
-    <div className="min-h-screen py-8 backdrop-blur-md">
-      <div className="max-w-4xl mx-auto px-4">
+    <div className="min-h-screen py-2 sm:py-8 backdrop-blur-md">
+      <div className="max-w-4xl mx-auto px-3 sm:px-4">
         <div className="flex justify-between items-center mb-4">
           <button
             onClick={() => setShowExitConfirm(true)}
@@ -283,7 +283,7 @@ export default function TriviaSession({
             {t.exitButton}
           </button>
         </div>
-        <div className="mb-8 bg-gray-900/60 p-4 rounded-lg border border-yellow-400/20">
+        <div className="mb-3 sm:mb-8 bg-gray-900/60 p-3 sm:p-4 rounded-lg border border-yellow-400/20">
           <div className="flex justify-between items-center mb-2">
             <h3 className="text-yellow-400 font-medium">{t.progress}</h3>
             <span className="text-sm text-yellow-400 bg-purple-900/50 px-3 py-1 rounded-full border border-yellow-400/30">

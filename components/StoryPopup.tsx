@@ -60,27 +60,48 @@ export default function StoryPopup({ isOpen, onClose }: StoryPopupProps) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           onClick={handleBackdropClick}
-          className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 cursor-pointer"
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4 cursor-pointer"
         >
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.9, opacity: 0 }}
-            className="bg-white rounded-xl max-w-2xl max-h-[80vh] overflow-y-auto p-6 md:p-8 relative cursor-default"
+            className="bg-gray-900/90 rounded-xl max-w-2xl max-h-[80vh] overflow-y-auto p-6 md:p-8 relative cursor-default border border-yellow-400/20"
           >
-            <h2 className="text-2xl md:text-3xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            <button
+              onClick={onClose}
+              className="absolute top-4 right-4 text-gray-400 hover:text-yellow-400 transition-colors"
+              aria-label="Close"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="w-6 h-6"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </button>
+
+            <h2 className="text-2xl md:text-3xl font-bold mb-6 bg-gradient-to-r from-yellow-400 to-yellow-200 bg-clip-text text-transparent">
               {t.title}
             </h2>
-            <div className="prose prose-sm md:prose-base">
+
+            <div className="prose prose-sm md:prose-base prose-invert">
               {t.content.split("\n\n").map((paragraph, index) => (
-                <p key={index} className="mb-4 text-gray-700">
+                <p key={index} className="mb-4 text-gray-300">
                   {paragraph}
                 </p>
               ))}
             </div>
+
             <button
               onClick={onClose}
-              className="mt-6 w-full py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-medium shadow-lg hover:shadow-xl transition-all duration-200"
+              className="mt-6 w-full py-3 bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 rounded-lg font-medium shadow-lg hover:shadow-yellow-400/20 transition-all duration-200"
             >
               {t.closeButton}
             </button>

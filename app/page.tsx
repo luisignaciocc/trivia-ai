@@ -62,13 +62,13 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-br from-blue-900 to-purple-900 p-4">
-      <div className="max-w-4xl mx-auto pt-4 sm:pt-12 md:pt-24">
+    <main className="min-h-screen bg-gradient-to-br from-blue-900 to-purple-900 p-3 sm:p-4 flex items-center">
+      <div className="w-full">
         {!sessionStarted ? (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-white/10 backdrop-blur-md rounded-xl shadow-2xl p-8 md:p-12 max-w-md mx-auto border border-white/20"
+            className="bg-white/10 backdrop-blur-md rounded-xl shadow-2xl p-4 sm:p-8 md:p-12 max-w-md mx-auto border border-white/20"
           >
             <div className="flex justify-between items-center mb-4">
               <button
@@ -112,16 +112,19 @@ export default function Home() {
                 </button>
               </div>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-center mb-2 bg-gradient-to-r from-yellow-400 to-yellow-200 bg-clip-text text-transparent">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-1 sm:mb-2 bg-gradient-to-r from-yellow-400 to-yellow-200 bg-clip-text text-transparent">
               {t.title}
             </h1>
-            <h2 className="text-xl md:text-2xl font-semibold text-center mb-6 text-purple-200">
+            <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-center mb-3 sm:mb-6 text-purple-200">
               {t.subtitle}
             </h2>
-            <p className="text-gray-200 text-center mb-8 leading-relaxed">
+            <p className="text-sm sm:text-base text-gray-200 text-center mb-4 sm:mb-8 leading-relaxed">
               {t.description}
             </p>
-            <form onSubmit={handleStartSession} className="space-y-6">
+            <form
+              onSubmit={handleStartSession}
+              className="space-y-4 sm:space-y-6"
+            >
               <div>
                 <label className="block text-sm font-medium text-purple-200 mb-2">
                   {t.topicLabel}
