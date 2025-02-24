@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { LanguageProvider } from "../contexts/LanguageContext";
 import { Analytics } from "@vercel/analytics/react";
+import { TOTAL_QUESTIONS } from "@/constants/game";
 
 export const metadata: Metadata = {
   title: "Trivia Wars: The Oracle's Challenge",
-  description:
-    "Face the Oracle of Ignorance in an epic battle of knowledge. Answer 30 questions correctly to claim the Flame of Knowledge and save humanity from eternal ignorance.",
+  description: `Face the Oracle of Ignorance in an epic battle of knowledge. Answer ${TOTAL_QUESTIONS} questions correctly to claim the Flame of Knowledge and save humanity from eternal ignorance.`,
   keywords:
     "trivia game, knowledge quiz, educational game, AI trivia, oracle challenge",
   authors: [{ name: "Your Name" }],

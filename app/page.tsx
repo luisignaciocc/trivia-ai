@@ -5,13 +5,13 @@ import { motion } from "framer-motion";
 import TriviaSession from "../components/TriviaSession";
 import { useLanguage } from "../contexts/LanguageContext";
 import StoryPopup from "../components/StoryPopup";
+import { TOTAL_QUESTIONS, REQUIRED_SCORE } from "../constants/game";
 
 const translations = {
   en: {
     title: "Trivia Wars",
     subtitle: "The Oracle's Challenge",
-    description:
-      "Face the Oracle of Ignorance in a battle of knowledge. Answer 27 out of 30 questions correctly to claim the Flame of Knowledge and save humanity from eternal ignorance.",
+    description: `Face the Oracle of Ignorance in a battle of knowledge. Answer ${REQUIRED_SCORE} out of ${TOTAL_QUESTIONS} questions correctly to claim the Flame of Knowledge and save humanity from eternal ignorance.`,
     topicLabel: "Choose Your Battlefield",
     topicPlaceholder: "Enter the domain of knowledge you wish to challenge...",
     startButton: "Accept the Challenge",
@@ -22,8 +22,7 @@ const translations = {
   es: {
     title: "Trivia Wars",
     subtitle: "El Desafío del Oráculo",
-    description:
-      "Enfrenta al Oráculo de la Ignorancia en una batalla de conocimiento. Responde 27 de 30 preguntas correctamente para reclamar la Llama del Conocimiento y salvar a la humanidad de la ignorancia eterna.",
+    description: `Enfrenta al Oráculo de la Ignorancia en una batalla de conocimiento. Responde ${REQUIRED_SCORE} de ${TOTAL_QUESTIONS} preguntas correctamente para reclamar la Llama del Conocimiento y salvar a la humanidad de la ignorancia eterna.`,
     topicLabel: "Elige tu Campo de Batalla",
     topicPlaceholder:
       "Ingresa el dominio de conocimiento que deseas desafiar...",
@@ -144,7 +143,7 @@ export default function Home() {
                 <input
                   type="range"
                   min="0"
-                  max="30"
+                  max={TOTAL_QUESTIONS} // Cambiar el máximo de hints para que coincida con el total de preguntas
                   value={hints}
                   onChange={(e) => setHints(parseInt(e.target.value))}
                   className="w-full h-2 bg-purple-300/20 rounded-lg appearance-none cursor-pointer accent-yellow-400"

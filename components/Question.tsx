@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "../contexts/LanguageContext";
+import { TOTAL_QUESTIONS } from "../constants/game";
 
 const translations = {
   en: {
@@ -178,7 +179,7 @@ export default function Question({
                 )}
               </div>
               <span className="px-3 py-1 text-sm font-medium text-yellow-400 bg-purple-900/50 rounded-full border border-yellow-400/30 self-start sm:self-auto">
-                {t.score}: {score}/30
+                {t.score}: {score}/{TOTAL_QUESTIONS}
               </span>
             </div>
 

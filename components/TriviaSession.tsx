@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Question from "./Question";
 import { useLanguage } from "../contexts/LanguageContext";
+import { TOTAL_QUESTIONS, REQUIRED_SCORE } from "../constants/game";
 
 interface TriviaSessionProps {
   topic: string;
@@ -167,7 +168,8 @@ export default function TriviaSession({
       setScore(score + 1);
     }
 
-    if (currentQuestionIndex < 29) {
+    if (currentQuestionIndex < TOTAL_QUESTIONS - 1) {
+      // Usar constante
       setCurrentQuestionIndex(currentQuestionIndex + 1);
       setIsLoading(true);
       await fetchQuestionWithRetry();
@@ -230,14 +232,16 @@ export default function TriviaSession({
             {t.completed}
           </h2>
           <div className="text-center space-y-4">
-            <div className="text-6xl font-bold mb-4">{score}/30</div>
+            <div className="text-6xl font-bold mb-4">
+              {score}/{TOTAL_QUESTIONS}
+            </div>
             <div className="h-4 bg-gray-200 rounded-full">
               <div
                 className="h-full bg-blue-600 rounded-full transition-all duration-500"
-                style={{ width: `${(score / 30) * 100}%` }}
+                style={{ width: `${(score / TOTAL_QUESTIONS) * 100}%` }}
               ></div>
             </div>
-            {score >= 27 ? (
+            {score >= REQUIRED_SCORE ? ( // Usar puntuación calculada
               <motion.p
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
@@ -287,13 +291,17 @@ export default function TriviaSession({
           <div className="flex justify-between items-center mb-2">
             <h3 className="text-yellow-400 font-medium">{t.progress}</h3>
             <span className="text-sm text-yellow-400 bg-purple-900/50 px-3 py-1 rounded-full border border-yellow-400/30">
-              {currentQuestionIndex + 1}/30
+              {currentQuestionIndex + 1}/{TOTAL_QUESTIONS}
             </span>
           </div>
           <div className="h-2 bg-purple-900/50 rounded-full overflow-hidden">
             <div
               className="h-full bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full transition-all duration-300 shadow-[0_0_10px_rgba(250,204,21,0.3)]"
-              style={{ width: `${((currentQuestionIndex + 1) / 30) * 100}%` }}
+              style={{
+                width: `${
+                  ((currentQuestionIndex + 1) / TOTAL_QUESTIONS) * 100
+                }%`,
+              }}
             ></div>
           </div>
           <div className="flex justify-between mt-1 text-xs text-yellow-400/60">

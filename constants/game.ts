@@ -1,0 +1,3 @@
+export const TOTAL_QUESTIONS = 15;
+export const VICTORY_PERCENTAGE = 0.9;
+export const REQUIRED_SCORE = Math.ceil(TOTAL_QUESTIONS * VICTORY_PERCENTAGE);

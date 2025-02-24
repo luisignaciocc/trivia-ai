@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { useLanguage } from "../contexts/LanguageContext";
+import { TOTAL_QUESTIONS, REQUIRED_SCORE } from "../constants/game";
 
 interface StoryPopupProps {
   isOpen: boolean;
@@ -15,7 +16,7 @@ const storyContent = {
 
     Cada mil años, un valiente es seleccionado para enfrentarlo en el Gran Desafío, un duelo de preguntas donde solo la astucia y la erudición pueden salvar a la humanidad de caer en la ignorancia eterna. Ahora, el elegido eres tú.
 
-    El Oráculo te lanzará 30 preguntas de todo tipo, desde historia hasta ciencia, pasando por cultura general y lógica. Para derrotarlo y reclamar la Llama del Conocimiento, debes responder 27 correctamente. Si fallas más de tres veces, el Oráculo sellará tu mente en la Cámara del Olvido, condenando al mundo a su reinado de confusión.
+    El Oráculo te lanzará ${TOTAL_QUESTIONS} preguntas de todo tipo, desde historia hasta ciencia, pasando por cultura general y lógica. Para derrotarlo y reclamar la Llama del Conocimiento, debes responder ${REQUIRED_SCORE} correctamente. Si fallas más de tres veces, el Oráculo sellará tu mente en la Cámara del Olvido, condenando al mundo a su reinado de confusión.
 
     Pero no estás solo. En tu travesía, contarás con El Grimorio de la Sabiduría, un antiguo tomo que puede ofrecerte pistas limitadas si las usas sabiamente. Sin embargo, el Oráculo es astuto y te pondrá trampas en forma de preguntas con engaños sutiles.
 
@@ -30,7 +31,7 @@ const storyContent = {
 
     Every thousand years, a brave soul is selected to face them in the Great Challenge, a duel of questions where only wit and erudition can save humanity from falling into eternal ignorance. Now, you are the chosen one.
 
-    The Oracle will pose 30 questions of all kinds, from history to science, including general knowledge and logic. To defeat them and claim the Flame of Knowledge, you must answer 27 correctly. If you fail more than three times, the Oracle will seal your mind in the Chamber of Oblivion, condemning the world to their reign of confusion.
+    The Oracle will pose ${TOTAL_QUESTIONS} questions of all kinds, from history to science, including general knowledge and logic. To defeat them and claim the Flame of Knowledge, you must answer ${REQUIRED_SCORE} correctly. If you fail more than three times, the Oracle will seal your mind in the Chamber of Oblivion, condemning the world to their reign of confusion.
 
     But you're not alone. In your journey, you'll have the Grimoire of Wisdom, an ancient tome that can offer limited hints if used wisely. However, the Oracle is cunning and will set traps in the form of questions with subtle deceptions.
 
