@@ -16,8 +16,12 @@ const translations = {
     title: "Trivia Wars",
     subtitle: "The Oracle's Challenge",
     description: `Face the Oracle of Ignorance in a battle of knowledge. Answer ${REQUIRED_SCORE} out of ${TOTAL_QUESTIONS} questions correctly to claim the Flame of Knowledge and save humanity from eternal ignorance.`,
-    topicLabel: "Choose Your Battlefield",
-    topicPlaceholder: "Enter the domain of knowledge you wish to challenge...",
+    topicLabel: "Choose Your Topic Challenge",
+    topicPlaceholder:
+      "Type a topic (e.g., 'Ancient Rome', 'Space', 'Movies', 'Science')",
+    topicDescription:
+      "The Oracle will generate questions about your chosen topic",
+    topicError: "Please enter a topic to begin the challenge",
     startButton: "Accept the Challenge",
     infoButton: "The Legend",
     hintsLabel: "Grimoire of Wisdom Charges",
@@ -27,9 +31,11 @@ const translations = {
     title: "Trivia Wars",
     subtitle: "El Desafío del Oráculo",
     description: `Enfrenta al Oráculo de la Ignorancia en una batalla de conocimiento. Responde ${REQUIRED_SCORE} de ${TOTAL_QUESTIONS} preguntas correctamente para reclamar la Llama del Conocimiento y salvar a la humanidad de la ignorancia eterna.`,
-    topicLabel: "Elige tu Campo de Batalla",
+    topicLabel: "Elige el Tema de tu Desafío",
     topicPlaceholder:
-      "Ingresa el dominio de conocimiento que deseas desafiar...",
+      "Escribe un tema (ej: 'Antigua Roma', 'Espacio', 'Películas', 'Ciencia')",
+    topicDescription: "El Oráculo generará preguntas sobre el tema que elijas",
+    topicError: "Por favor ingresa un tema para comenzar el desafío",
     startButton: "Aceptar el Desafío",
     infoButton: "La Leyenda",
     hintsLabel: "Cargas del Grimorio de la Sabiduría",
@@ -139,6 +145,9 @@ export default function Home() {
                   placeholder={t.topicPlaceholder}
                   className="w-full p-3 border border-purple-300/20 rounded-lg bg-white/10 text-white placeholder-gray-400 focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all"
                 />
+                <p className="mt-1 text-sm text-purple-200/80">
+                  {t.topicDescription}
+                </p>
               </div>
               <div>
                 <label className="block text-sm font-medium text-purple-200 mb-2">
