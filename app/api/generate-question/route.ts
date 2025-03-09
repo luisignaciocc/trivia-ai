@@ -3,6 +3,8 @@ import OpenAI from "openai";
 import { z } from "zod";
 import { zodResponseFormat } from "openai/helpers/zod";
 
+export const maxDuration = 60;
+
 const openaiClient = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
