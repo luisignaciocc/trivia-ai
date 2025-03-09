@@ -120,7 +120,7 @@ export default function TriviaSession({
 
       for (let attempt = 0; attempt < retries; attempt++) {
         try {
-          const response = await fetch("/api/generate-question", {
+          const response = await fetch("https://trivia.luisignacio.cc/api/generate-question", {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
